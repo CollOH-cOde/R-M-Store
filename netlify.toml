@@ -1,0 +1,33 @@
+# netlify.toml
+# =============================================
+# Netlify configuration for R & M Collection
+# =============================================
+
+[build]
+  publish = "client/dist"
+  # No build command — deploying pre-built dist
+  # To rebuild from source: command = "cd client && npm install && npm run build"
+
+# ── API proxy to Railway backend ─────────────────────────────
+# MUST come BEFORE the SPA catch-all below.
+# Replace YOUR-RAILWAY-BACKEND-URL with your actual Railway URL.
+# Example: https://rm-collection-production.up.railway.app
+[[redirects]]
+  from   = "/api/*"
+  to     = "https://YOUR-RAILWAY-BACKEND-URL.up.railway.app/api/:splat"
+  status = 200
+  force  = true
+
+[[redirects]]
+  from   = "/images/*"
+  to     = "https://YOUR-RAILWAY-BACKEND-URL.up.railway.app/images/:splat"
+  status = 200
+  force  = true
+
+# ── SPA routing ──────────────────────────────────────────────
+# All other routes (/, /admin, /track, etc.) serve index.html
+# so React Router handles them client-side.
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
