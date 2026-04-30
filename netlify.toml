@@ -14,7 +14,7 @@
 # Example: https://rm-collection-production.up.railway.app
 [[redirects]]
   from   = "/api/*"
-  to     = "https://YOUR-RAILWAY-BACKEND-URL.up.railway.app/api/:splat"
+  to     = "https://r-m-store.onrender.com/api/:splat"
   status = 200
   force  = true
 
